@@ -28,5 +28,9 @@ EXPOSE 8009
 EXPOSE 8080
 EXPOSE 8443
 
-CMD service alfresco start && /bin/sh -c "while true;do sleep 1;done"
+VOLUME /var/lib/alfresco
+ADD alfresco-global.properties /opt/alfresco-5.0.b/tomcat/shared/classes/alfresco-global.properties
+
+CMD service alfresco start && tail -f /opt/alfresco-5.0.b/alfresco.log
+
 
